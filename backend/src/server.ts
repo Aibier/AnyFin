@@ -2,7 +2,7 @@ import * as bodyParser from 'body-parser';
 import * as compression from 'compression';
 import * as cookieParser from 'cookie-parser';
 import * as cors from 'cors';
-import { HOST, MONGO_DB, MONGO_USER, MONGO_PASSWORD, PORT } from '@/cerendentials';
+import { HOST, MONGO_DB, MONGO_USER, MONGO_PASSWORD, PORT } from '@/credentials';
 import * as express from 'express';
 import * as expressStatusMonitor from 'express-status-monitor';
 import * as helmet from 'helmet';

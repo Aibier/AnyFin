@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { authActions } from '../../actions';
+import { HeaderComponent } from '../../components/HeaderComponent';
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -36,31 +37,35 @@ class LoginPage extends React.Component {
         const { loggingIn } = this.props;
         const { email, password, submitted } = this.state;
         return (
-            <div className="row justify-content-md-center">
-                <div className=" col-md-4  ">
-                    <h2>Login</h2>
-                    <form name="form" onSubmit={this.handleSubmit}>
-                        <div className={'form-group' + (submitted && !email ? ' has-error' : '')}>
-                            <label htmlFor="email">Email</label>
-                            <input type="text" className="form-control" name="email" value={email} onChange={this.handleChange} />
-                            {submitted && !email &&
-                            <div className="help-block">Email is required</div>
-                            }
-                        </div>
-                        <div className={'form-group' + (submitted && !password ? ' has-error' : '')}>
-                            <label htmlFor="password">Password</label>
-                            <input type="password" className="form-control" name="password" value={password} onChange={this.handleChange} />
-                            {submitted && !password &&
-                            <div className="help-block">Password is required</div>
-                            }
-                        </div>
-                        <div className="form-group">
-                            <button className="btn btn-primary">Signin</button>
-                            <Link to="/register" className="btn btn-link">Register</Link>
-                        </div>
-                    </form>
+            <div>
+                <HeaderComponent/>
+                <div className="row justify-content-md-center">
+                    <div className=" col-md-4  m-3 mt-2">
+                        <h2 className="mt-2 text-center">Login</h2>
+                        <form name="form" onSubmit={this.handleSubmit}>
+                            <div className={'form-group' + (submitted && !email ? ' has-error' : '')}>
+                                <label htmlFor="email">Email</label>
+                                <input type="text" className="form-control" name="email" value={email} onChange={this.handleChange} />
+                                {submitted && !email &&
+                                <div className="help-block">Email is required</div>
+                                }
+                            </div>
+                            <div className={'form-group' + (submitted && !password ? ' has-error' : '')}>
+                                <label htmlFor="password">Password</label>
+                                <input type="password" className="form-control" name="password" value={password} onChange={this.handleChange} />
+                                {submitted && !password &&
+                                <div className="help-block">Password is required</div>
+                                }
+                            </div>
+                            <div className="form-group">
+                                <button className="btn btn-primary">Signin</button>
+                                <Link to="/register" className="btn btn-link">Register</Link>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
+
         );
     }
 }

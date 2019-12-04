@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { ItemNotFoundException } from '@/exceptions';
-import { FIXER_ACCESS_TOKEN, FIXER_URL, URL } from '@/cerendentials';
+import { FIXER_ACCESS_TOKEN, FIXER_URL, URL } from '@/credentials';
 import { logger } from '@/services';
 import { NextFunction, Request, Response, Router } from 'express';
 

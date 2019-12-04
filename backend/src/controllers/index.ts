@@ -1,4 +1,4 @@
-import { JWT_SECRET } from "@/cerendentials";
+import { JWT_SECRET } from "@/credentials";
 import * as express from 'express';
 import {LogInDto, userModel as UserModel} from "@/models/user.model";
 import { CreateUserDto } from "@/models/user.dto";

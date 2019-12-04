@@ -7,25 +7,29 @@ class HeaderComponent extends React.Component {
     render() {
         const { user } = this.props;
         let data;
-        if (user) {
-            data =  <div className="col-md-12">
-                <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                    <Link to="/" className="navbar-brand" >Home</Link>
-                    <div className="collapse navbar-collapse">
-                        <ul className="navbar-nav">
-                            <li className="nav-item active">
-                                <Link to="/countries" className="nav-link" >Countries</Link>
-                            </li>
-                        </ul>
-                    </div>
-                    <a className="navbar-brand">Hi {user.user.name}!</a>
-                    <Link to="/login" className="btn btn-outline-success my-2 my-sm-0" >Logout</Link>
-                </nav>
-                <hr/>
-            </div>
-        } else {
-            data = <Redirect/>
-        }
+        const divStyle = { width: '100px' };
+        data =  <div className="col-md-12">
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <Link to="/" className="navbar-brand" >Home</Link>
+                <div className="collapse navbar-collapse">
+                    <ul className="navbar-nav">
+                        <li className="nav-item active">
+                            <Link to="/countries" className="nav-link" >Countries</Link>
+                        </li>
+                    </ul>
+                </div>
+                {user ?
+                    (<div>
+                        <a className="" style={divStyle}>Hi {user.user.name}!</a>
+                        <Link to="/login" className="btn btn-outline-success my-2 my-sm-0" >Logout</Link>
+                    </div>) : (
+                        <Link to="/login" className="btn btn-outline-success my-2 my-sm-0" >Login</Link>
+                    )
+                }
+
+            </nav>
+            <hr/>
+        </div>
 
         return data
     }

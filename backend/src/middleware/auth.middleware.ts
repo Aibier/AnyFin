@@ -1,4 +1,4 @@
-import { JWT_SECRET } from '@/cerendentials';
+import { JWT_SECRET } from '@/credentials';
 import { NextFunction, Response } from 'express';
 import {
   AuthenticationTokenMissingException,
