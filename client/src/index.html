@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to AnyFin</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+   <style >
+       .loader {
+           position: absolute;
+           top: 50%;
+           left: 50%;
+           border: 16px solid #f3f3f3;
+           border-radius: 50%;
+           border-top: 16px solid gold;
+           border-right: 16px solid purple;
+           border-bottom: 16px solid red;
+           width: 60px;
+           height: 60px;
+           -webkit-animation: spin 2s linear infinite;
+           animation: spin 2s linear infinite;
+       }
+       @-webkit-keyframes spin {
+           0% { -webkit-transform: rotate(0deg); }
+           100% { -webkit-transform: rotate(360deg); }
+       }
+
+       @keyframes spin {
+           0% { transform: rotate(0deg); }
+           100% { transform: rotate(360deg); }
+       }
+       td a:not([href]):not([tabindex]) {
+           text-decoration: underline;
+       }
+       a, td, dl, dt {
+           font-size: 14px;
+           color: #4A4A4A;
+       }
+       .form-control:focus {
+           box-shadow: none;
+       }
+
+       .form-control-underlined {
+           border-width: 0;
+           border-bottom-width: 1px;
+           border-radius: 0;
+           padding-left: 0;
+       }
+       body {
+           background: #fff;
+       }
+       .form-control::placeholder {
+           font-size: 0.95rem;
+           color: #aaa;
+           font-style: italic;
+       }
+       .anyfin_link {
+           text-decoration: underline;
+           color: #1361a6;
+       }
+   </style>
+</head>
+
+<body>
+    <div id="app" class="container-fluid"></div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous">
+    </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "db": {
+    "database": "anyfin",
+    "password": "password@2019",
+    "requestTimeout": 60000,
+    "host": "127.0.0.1",
+    "port": 27017,
+    "user": "anyfinuser"
+  }
+}

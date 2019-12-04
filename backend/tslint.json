@@ -1,0 +1,77 @@
+{
+  "extends": [
+    "tslint:recommended",
+    "tslint-config-prettier",
+    "tslint-plugin-prettier"
+  ],
+  "rules": {
+    "interface-name" : false,
+    "class-name": true,
+    "prettier": true,
+    "comment-format": [
+      true,
+      "check-space"
+    ],
+    "indent": [
+      true,
+      "spaces"
+    ],
+    "one-line": [
+      true,
+      "check-open-brace",
+      "check-whitespace"
+    ],
+    "lines-between-class-members": [true, 1],
+    "no-var-keyword": true,
+    "quotemark": [
+      true,
+      "single",
+      "avoid-escape"
+    ],
+    "semicolon": [
+      true,
+      "always",
+      "ignore-bound-class-methods"
+    ],
+    "whitespace": [
+      true,
+      "check-branch",
+      "check-decl",
+      "check-operator",
+      "check-module",
+      "check-separator",
+      "check-type"
+    ],
+    "typedef-whitespace": [
+      true,
+      {
+        "call-signature": "nospace",
+        "index-signature": "nospace",
+        "parameter": "nospace",
+        "property-declaration": "nospace",
+        "variable-declaration": "nospace"
+      },
+      {
+        "call-signature": "onespace",
+        "index-signature": "onespace",
+        "parameter": "onespace",
+        "property-declaration": "onespace",
+        "variable-declaration": "onespace"
+      }
+    ],
+    "max-line-length": [false],
+    "no-internal-module": true,
+    "no-trailing-whitespace": true,
+    "no-null-keyword": true,
+    "space-before-function-paren": false,
+    "prefer-const": true,
+    "jsdoc-format": true,
+    "ordered-imports": false,
+    "max-classes-per-file": [false, 1],
+    "no-string-literal": false
+  },
+  "rulesDirectory": [
+    "tslint-plugin-prettier",
+    "tslint-lines-between-class-members"
+  ]
+}
