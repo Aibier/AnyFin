@@ -7,7 +7,7 @@ class HeaderComponent extends React.Component {
     render() {
         const { user } = this.props;
         let data;
-        const divStyle = { width: '100px' };
+        const divStyle = { width: '100px', paddingRight: '10px' };
         data =  <div className="col-md-12">
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <Link to="/" className="navbar-brand" >Home</Link>
@@ -18,7 +18,7 @@ class HeaderComponent extends React.Component {
                         </li>
                     </ul>
                 </div>
-                {user ?
+                {user && user.user ?
                     (<div>
                         <a className="" style={divStyle}>Hi {user.user.name}!</a>
                         <Link to="/login" className="btn btn-outline-success my-2 my-sm-0" >Logout</Link>
