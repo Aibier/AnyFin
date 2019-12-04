@@ -6,8 +6,9 @@ export function getTemplate(countries, details, fn) {
 
     const columnNumber = details ? 4: 3;
     const columnWith = `${1/columnNumber * 100}%`;
-    console.log(columnWith);
     const colStyle = { width: columnWith, fontSize: '14px' };
+    const hideCur = details ? 'mobile_hide' : '';
+    const showRate = details ? '' : 'mobile_hide';
  return (
      <div className="container">
          <div className="row">
@@ -19,10 +20,19 @@ export function getTemplate(countries, details, fn) {
                      <tr>
                          <th scope="col" style={ colStyle }>Name</th>
                          <th scope="col" style={ colStyle }>Population</th>
-                         {!details &&
-                            <th scope="col" style={ colStyle }>Currencies</th>
-                         }
-                         {details && <th scope="col" style={ colStyle }>Currency Rate</th>}
+                         
+                            <th 
+                                scope="col" 
+                                style={ colStyle }
+                                className = { hideCur }
+                                >Currencies
+                            </th>
+                         
+                         <th 
+                            className = { showRate }
+                            scope="col" 
+                            style={ colStyle }>{ details ? 'Currency Rate' :'Currency Symbol'}
+                        </th>
                      </tr>
                      </thead>
                      <tbody>
@@ -33,22 +43,21 @@ export function getTemplate(countries, details, fn) {
                                  <a onClick={fn }>{country.name}</a>
                              </td>
                              <td>{ country.population }</td>
-                             { !details &&
-                                 <td>
-                                     <dl>
-                                         { country.currencies.map((cur, idx) => <dt key={idx} > { cur.name }</dt> )}
-                                     </dl>
-                                 </td>
-                             }
-                             { details &&
-                             <td>
+                             
+                             <td className = { hideCur }>
+                                 <dl>
+                                     { country.currencies.map((cur, idx) => <dt key={idx} > { cur.name }</dt> )}
+                                 </dl>
+                             </td>
+                             
+                             <td  className = { showRate }>
                                  <dl>
                                      { country.currencies.map((cur, idx) =>
                                          <dt key={idx} > {cur.symbol } { cur.rate? cur.rate.toFixed(4): '' }</dt>
                                      ) }
                                  </dl>
                              </td>
-                             }
+                             
                          </tr>
                      )}
                      </tbody>

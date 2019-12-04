@@ -26,10 +26,9 @@ class App extends React.Component {
                 }
                 <Router history={history}>
                     <Switch>
-                        <PrivateRoute exact path="/" component={HomePage} />
+                        <PrivateRoute exact path="/" component={CountriesPage} />
                         <Route path="/login" component={LoginPage} />
                         <Route path="/register" component={RegisterPage} />
-                        <Route path="/countries" component={CountriesPage} />
                     </Switch>
                 </Router>
             </div>

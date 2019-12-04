@@ -36,7 +36,7 @@ class LandingPage extends React.Component {
             console.log(error);
         }
         return (
-            <div className="row text-center">
+            <div>
                 <HeaderComponent/>
                 <div className="loading_bar">
                     { button }
