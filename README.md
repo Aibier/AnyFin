@@ -2,7 +2,8 @@
 This is express-react-typescript application
 
 This is anyFin backend API server.
-##Setup Backend;
+
+## Setup Backend;
 
 1. Go to backend root and run
 `$ npm install`;
@@ -24,12 +25,12 @@ const userSchema = new mongoose.Schema({ email: String, name: String, password: 
 export const userModel = mongoose.model<User & mongoose.Document>('User', userSchema);
 ```
 5. To test backend: `npm test`
-6. API andend: `{host}:{port}/api/`
+6. API endpoint: `{host}:{port}/api/`
 
-#### Frontend setup;
+## Frontend setup;
 This is anyFin front UI components.
 
-## To Setup:
+##$ To Setup:
  
 1. Go to frontend root and run `$ npm install`;
 2. To run frontend: `npm start`
