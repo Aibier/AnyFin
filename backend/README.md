@@ -22,6 +22,6 @@ const userSchema = new mongoose.Schema({ email: String, name: String, password: 
 export const userModel = mongoose.model<User & mongoose.Document>('User', userSchema);
 ```
 5. To test backend: `npm test`
-6. API andend: `{host}:{port}/api/`
+6. API endpoint: `{host}:{port}/api/`
 
 #### Created By Abuduaini Azizize (Tony)
