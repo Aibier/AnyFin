@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 
@@ -13,9 +13,6 @@ class HeaderComponent extends React.Component {
                 <Link to="/" className="navbar-brand" >Home</Link>
                 <div className="collapse navbar-collapse">
                     <ul className="navbar-nav">
-                        <li className="nav-item active">
-                            <Link to="/countries" className="nav-link" >Countries</Link>
-                        </li>
                     </ul>
                 </div>
                 {user && user.user ?
@@ -26,7 +23,6 @@ class HeaderComponent extends React.Component {
                         <Link to="/login" className="btn btn-outline-success my-2 my-sm-0" >Login</Link>
                     )
                 }
-
             </nav>
             <hr/>
         </div>

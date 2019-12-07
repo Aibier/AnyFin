@@ -44,10 +44,11 @@ class Countries extends React.Component {
         }
 
         if(!hide && countries.items) {
-            data = getTemplate(countries, false, () => {});
+            console.log(countries.items);
+            data = getTemplate(countries.items, false, () => {});
         }
         if(hide && country.items) {
-            data = getTemplate(country, true, () => {});
+            data = getTemplate(country.items, true, () => {});
         }
         return (
             <div>

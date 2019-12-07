@@ -12,9 +12,9 @@ export function getTemplate(countries, details, fn) {
  return (
      <div className="container">
          <div className="row">
-             {countries.items &&
+             { countries.count > 0 && 
              <div className="col-md-12 table-responsive">
-                 <div className="text-left">Total { countries.items.count } found.</div>
+                 <div className="text-left">Total { countries.count } found.</div>
                  < table className="table ">
                      <thead className="thead-light">
                      <tr>
@@ -36,8 +36,7 @@ export function getTemplate(countries, details, fn) {
                      </tr>
                      </thead>
                      <tbody>
-                     {countries.items.countries.map((country, index) =>
-
+                     {countries.countries.map((country, index) =>
                          <tr key={index}>
                              <td>
                                  <a onClick={fn }>{country.name}</a>
