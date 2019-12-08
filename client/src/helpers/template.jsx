@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 
-export function getTemplate(countries, details, fn) {
+export function getTemplate(countries, total,  details, fn) {
 
     const columnNumber = details ? 4: 3;
     const columnWith = `${1/columnNumber * 100}%`;
@@ -12,9 +12,9 @@ export function getTemplate(countries, details, fn) {
  return (
      <div className="container">
          <div className="row">
-             { countries.count > 0 && 
+             { countries.length > 0 && 
              <div className="col-md-12 table-responsive">
-                 <div className="text-left">Total { countries.count } found.</div>
+                 <div className="text-left">Total { total } found.</div>
                  < table className="table ">
                      <thead className="thead-light">
                      <tr>
@@ -36,7 +36,7 @@ export function getTemplate(countries, details, fn) {
                      </tr>
                      </thead>
                      <tbody>
-                     {countries.countries.map((country, index) =>
+                     {countries.map((country, index) =>
                          <tr key={index}>
                              <td>
                                  <a onClick={fn }>{country.name}</a>

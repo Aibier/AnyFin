@@ -11,6 +11,12 @@ class Countries extends React.Component {
     constructor(props) {
         super(props);
         this.handleSearch = this.handleSearch.bind(this);
+        this.state = {
+            'start': 0,
+            'limit': 10,
+            'current': [],
+            'origin': []
+        }
     }
     componentDidMount() {
         this.props.getCountries();
@@ -26,10 +32,20 @@ class Countries extends React.Component {
         }
     };
 
+    moveNext(curret) {
+        this.state.limit += 10; 
+        this.state.start += 10;
+        this.state.current = this.state.origin.slice(this.state.start, this.state.limit) 
+    }
+    movePrevious(origin) {
+        console.log('Im moving previous.')
+    }
+
     render() {
         const { countries, country } = this.props;
         const isLoading =  countries.loading || country.loading;
         let button, data;
+        
 
         if (isLoading) {
             button = <div className="loader text-center"></div>
@@ -44,12 +60,16 @@ class Countries extends React.Component {
         }
 
         if(!hide && countries.items) {
-            console.log(countries.items);
-            data = getTemplate(countries.items, false, () => {});
+            this.state.orgin = countries.items.countries
+            this.state.current = countries.items.countries.slice(0, 10);
+            console.log('current data', this.state.current);
+            data = getTemplate(this.state.current, countries.items.count,  false, () => {});
         }
         if(hide && country.items) {
-            data = getTemplate(country.items, true, () => {});
+            // this.setState.current = country.items.countries.slice(start, limit);
+            data = getTemplate(ountry.items.countries, countries.items.count,  true, () => {});
         }
+
         return (
             <div>
                 <SearchComponent  handleSearch={this.handleSearch} />
@@ -57,6 +77,21 @@ class Countries extends React.Component {
                     { button }
                 </div>
                 { data }
+                { !isLoading && 
+                    <div className="container" >
+                    <div className="d-flex">
+                        <div className="mr-auto p-2">
+                            <button className="bth" onClick={() => this.movePrevious(this.state.start) }>
+                             Previous 
+                            </button></div>
+                        <div className="p-2">
+                            <button className="bth" onClick={ () => this.moveNext(this.state.current)}>
+                             Next
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                }
             </div>
         );
     }
