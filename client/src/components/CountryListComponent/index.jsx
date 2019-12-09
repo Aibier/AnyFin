@@ -19,6 +19,7 @@ class Countries extends React.Component {
     constructor(props) {
         super(props);
         this.handleSearch = this.handleSearch.bind(this);
+        this.handleOnclick = this.handleOnclick.bind(this);
         this.state = initialState
     }
     componentDidMount() {
@@ -65,6 +66,10 @@ class Countries extends React.Component {
         }
     }
 
+    handleOnclick(event) {
+       this.handleSearch(event.target.text)
+    }
+
     render() {
         const { countries, country } = this.props;
         const isLoading =  countries.loading || country.loading;
@@ -83,7 +88,7 @@ class Countries extends React.Component {
         }
 
         if(!hide && countries.items) {
-            data = getTemplate(this.state.current, countries.items.count,  false, () => {});
+            data = getTemplate(this.state.current, countries.items.count,  false, this.handleOnclick);
         }
         if(hide && country.items) {
             data = getTemplate(country.items.countries, countries.items.count,  true, () => {});
