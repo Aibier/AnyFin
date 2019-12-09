@@ -5,5 +5,5 @@ export const HOST = 'localhost';
 export const PORT = '27017';
 export const JWT_SECRET = 'We are here to win';
 export const FIXER_URL = 'http://data.fixer.io/api/latest';
-export const FIXER_ACCESS_TOKEN = 'YOUR_FIXER_ACCESS_TOKEN';
+export const FIXER_ACCESS_TOKEN = '9de2b497fa14d32f3e096365509118f5';
 export const URL = 'https://restcountries.eu/rest/v2/';

@@ -5,21 +5,21 @@ import { getCountries, getCountryByName } from '../../actions';
 import { getTemplate, getNotFound } from '../../helpers/template';
 let hide = false;
 let value = '';
-
+const initialState = {
+    'start': 0,
+    'limit': 10,
+    'current': [],
+    'origin': [],
+    'total': 0,
+    'currentPage': 1,
+    'totalPage': 1
+}
 class Countries extends React.Component {
 
     constructor(props) {
         super(props);
         this.handleSearch = this.handleSearch.bind(this);
-        this.state = {
-            'start': 0,
-            'limit': 10,
-            'current': [],
-            'origin': [],
-            'total': 0,
-            'currentPage': 1,
-            'totalPage': 1
-        }
+        this.state = initialState
     }
     componentDidMount() {
          this.props.getCountries()
@@ -34,13 +34,14 @@ class Countries extends React.Component {
         }
     }
     handleSearch (searchValue)  {
+        this.setState(initialState);
         if (searchValue) {
             value = searchValue;
             hide = true;
             this.props.getCountryByName(searchValue);
-            this.setState({ totalPage: 1});
         } else {
             hide = false;
+            value = '';
             this.props.getCountries();
         }
     };
@@ -48,7 +49,7 @@ class Countries extends React.Component {
     moveNext(n) {
         this.state.limit += 10; 
         this.state.start += 10;
-        if(this.state.start < this.state.total && this.state.totalPage > 1) {
+        if(this.state.start < this.state.total) {
             const current = this.state.origin.slice(this.state.start, this.state.limit) ;
             this.setState({current: current });
             this.setState({ currentPage: this.state.currentPage + 1 });
@@ -95,7 +96,7 @@ class Countries extends React.Component {
                     { button }
                 </div>
                 { data }
-                { !isLoading && this.state.totalPage > 1 &&  
+                { !value && !isLoading && this.props.countries &&  
                     <div className="container" >
                         <div className="d-flex">
                             <div className="mr-auto p-2">
