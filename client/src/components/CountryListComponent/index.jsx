@@ -15,38 +15,60 @@ class Countries extends React.Component {
             'start': 0,
             'limit': 10,
             'current': [],
-            'origin': []
+            'origin': [],
+            'total': 0,
+            'currentPage': 1,
+            'totalPage': 1
         }
     }
     componentDidMount() {
-        this.props.getCountries();
+         this.props.getCountries()
+    }
+    componentDidUpdate(prevProps, prevState) {
+        if (!this.props.isLoading && this.props.countries.items && this.state.origin.length ===0) {
+            this.setState({ origin: this.props.countries.items.countries});
+            this.setState({ current: this.props.countries.items.countries.slice(this.state.start, this.state.limit)});
+            this.setState({ total: this.props.countries.items.countries.length });
+            this.setState({ totalPage: Math.ceil(this.props.countries.items.countries.length/10)});
+            this.setState({ currentPage: 1 });
+        }
     }
     handleSearch (searchValue)  {
         if (searchValue) {
             value = searchValue;
             hide = true;
             this.props.getCountryByName(searchValue);
+            this.setState({ totalPage: 1});
         } else {
             hide = false;
             this.props.getCountries();
         }
     };
 
-    moveNext(curret) {
+    moveNext(n) {
         this.state.limit += 10; 
         this.state.start += 10;
-        this.state.current = this.state.origin.slice(this.state.start, this.state.limit) 
+        if(this.state.start < this.state.total && this.state.totalPage > 1) {
+            const current = this.state.origin.slice(this.state.start, this.state.limit) ;
+            this.setState({current: current });
+            this.setState({ currentPage: this.state.currentPage + 1 });
+        }
     }
-    movePrevious(origin) {
-        console.log('Im moving previous.')
+    movePrevious(p) {
+        if(this.state.start > 0 && this.state.limit > 0) {
+            this.state.limit -=10; 
+            this.state.start -= 10;
+            const current = this.state.origin.slice(this.state.start, this.state.limit) ;
+            this.setState({current: current });
+            this.setState({ currentPage: this.state.currentPage - 1 });
+        }
     }
 
     render() {
         const { countries, country } = this.props;
         const isLoading =  countries.loading || country.loading;
         let button, data;
-        
-
+    
         if (isLoading) {
             button = <div className="loader text-center"></div>
         }
@@ -60,14 +82,10 @@ class Countries extends React.Component {
         }
 
         if(!hide && countries.items) {
-            this.state.orgin = countries.items.countries
-            this.state.current = countries.items.countries.slice(0, 10);
-            console.log('current data', this.state.current);
             data = getTemplate(this.state.current, countries.items.count,  false, () => {});
         }
         if(hide && country.items) {
-            // this.setState.current = country.items.countries.slice(start, limit);
-            data = getTemplate(ountry.items.countries, countries.items.count,  true, () => {});
+            data = getTemplate(country.items.countries, countries.items.count,  true, () => {});
         }
 
         return (
@@ -77,20 +95,29 @@ class Countries extends React.Component {
                     { button }
                 </div>
                 { data }
-                { !isLoading && 
+                { !isLoading && this.state.totalPage > 1 &&  
                     <div className="container" >
-                    <div className="d-flex">
-                        <div className="mr-auto p-2">
-                            <button className="bth" onClick={() => this.movePrevious(this.state.start) }>
-                             Previous 
-                            </button></div>
-                        <div className="p-2">
-                            <button className="bth" onClick={ () => this.moveNext(this.state.current)}>
-                             Next
-                            </button>
+                        <div className="d-flex">
+                            <div className="mr-auto p-2">
+                                <button 
+                                className="bth"
+                                disabled={ this.state.currentPage === 1 }
+                                 onClick={() => this.movePrevious(this.state.start) }>
+                                Previous 
+                                </button>
+                            </div>
+                            <div className="p-2 text-center">
+                             { this.state.currentPage } of { this.state.totalPage }
+                            </div>
+                            <div className="p-2">
+                                <button 
+                                disabled={ this.state.currentPage === this.state.totalPage }
+                                className="bth" onClick={ () => this.moveNext(this.state.start)}>
+                                Next
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
                 }
             </div>
         );
