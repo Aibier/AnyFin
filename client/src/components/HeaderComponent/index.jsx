@@ -18,9 +18,9 @@ class HeaderComponent extends React.Component {
                 {user && user.user ?
                     (<div>
                         <a className="" style={divStyle}>Hi {user.user.name}!</a>
-                        <Link to="/login" className="btn btn-outline-success my-2 my-sm-0" >Singout</Link>
+                        <Link to="/login" className="btn btn-primary my-2 my-sm-0" >Singout</Link>
                     </div>) : (
-                        <Link to="/login" className="btn btn-outline-success my-2 my-sm-0" >Signin</Link>
+                        <Link to="/login" className="btn btn-primary my-2 my-sm-0" >Signin</Link>
                     )
                 }
             </nav>
