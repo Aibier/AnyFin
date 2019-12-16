@@ -7,7 +7,7 @@ import { PrivateRoute } from '../components';
 import { LoginPage } from '../pages/LoginPage';
 import { RegisterPage } from '../pages/RegisterPage';
 import { CountriesPage } from '../pages/CountryPage';
-import { HomePage } from '../pages/HomePage';
+
 
 class App extends React.Component {
     constructor(props) {
