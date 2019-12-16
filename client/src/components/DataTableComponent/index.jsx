@@ -1,4 +1,5 @@
 import React from "react";
+import { TableHeaderComponent } from './TableHeaderComponent'
 import { CountryItemComponent } from '../CountryItemComponent';
 
 export class CustomDatatable extends React.Component{
@@ -7,31 +8,24 @@ export class CustomDatatable extends React.Component{
     }
 
     render() {
-        return <div className="col-md-12 table-responsive">
-            <div className="text-left">Total { this.props.total } found.</div>
-            <table className="table">
-                <thead className="thead-light">
-                <tr>
-                    <th scope="col" style={ this.props.colStyle }>Name</th>
-                    <th scope="col" style={ this.props.colStyle }>Population</th>
+        const { total, colStyle, hideCurrency, showRate, showList } = this.props;
+        const attributes = {
+            hideCurrency,
+            showRate,
+            showList,
+            colStyle
+        };
 
-                    <th
-                        scope="col"
-                        style={ this.props.colStyle }
-                        className = { this.props.hideCur }
-                    >Currencies
-                    </th>
-                    <th
-                        className = { this.props.showRate }
-                        scope="col"
-                        style={ this.props.colStyle } > { this.props.showRate ? 'Currency Rate' :'Currency Symbol'}
-                    </th>
-                </tr>
-                </thead>
+        return <div className="col-md-12 table-responsive">
+            <div className="text-left">Total { total } found.</div>
+            <table className="table">
+                <TableHeaderComponent attributes={attributes} />
                 <tbody>
                  {
                      this.props.countries.map(
-                         (country, index) => <CountryItemComponent country={country} key={index} />)
+                         (country, index) => <CountryItemComponent
+                             country={country} key={index} showList={showList} colStyle={colStyle}
+                         />)
                  }
                 </tbody>
             </table>
@@ -39,4 +33,6 @@ export class CustomDatatable extends React.Component{
 
     }
 }
+
+
 

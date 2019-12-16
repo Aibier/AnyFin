@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import { SearchComponent } from '../../components/SearchComponent';
 import { CustomDatatable} from '../DataTableComponent';
 import { ItemNotFound } from '../NotFoudComponent';
+import { LoadingBarComponent } from '../CommonComponents/LoadingBarComponent'
 import { getCountries, getCountryByName } from '../../actions';
 
 
-let hide = false;
+let showList = true;
 let value = '';
 let showPagination = false;
 const initialState = {
@@ -17,7 +18,8 @@ const initialState = {
     'total': 0,
     'currentPage': 1,
     'totalPage': 1
-}
+};
+
 class Countries extends React.Component {
 
     constructor(props) {
@@ -25,9 +27,11 @@ class Countries extends React.Component {
         this.handleSearch = this.handleSearch.bind(this);
         this.state = initialState
     }
+
     componentDidMount() {
          this.props.getCountries()
     }
+
     componentDidUpdate(prevProps, prevState) {
         if (!this.props.isLoading && this.props.countries.items && this.state.origin.length ===0) {
             this.setState({ origin: this.props.countries.items.countries});
@@ -37,14 +41,15 @@ class Countries extends React.Component {
             this.setState({ currentPage: 1 });
         }
     }
+
     handleSearch (searchValue)  {
         this.setState(initialState);
         if (searchValue) {
             value = searchValue;
-            hide = true;
+            showList = false;
             this.props.getCountryByName(searchValue);
         } else {
-            hide = false;
+            showList = true;
             value = '';
             this.props.getCountries();
         }
@@ -74,74 +79,74 @@ class Countries extends React.Component {
         const isLoading =  countries.loading || country.loading;
         let button, data, total, notFoundData;
 
-        const columnNumber = hide && country.items ? 4: 3;
+        const columnNumber = showList && country.items ? 4: 3;
         const columnWith = `${1/columnNumber * 100}%`;
         const colStyle = { width: columnWith, fontSize: '14px' };
-        const hideCur = hide && country.items ? 'mobile_hide' : '';
-        const showRate = hide && country.items ? '' : 'mobile_hide';
+        const hideCurrency = showList && country.items ? 'hide' : '';
+        const showRate = showList && country.items ? '' : 'hide';
 
         if (isLoading) {
-            button = <div className="loader text-center"></div>
+            button = <LoadingBarComponent />
         }
+
         if (country.error) {
-            hide = true;
+            showList = false;
             notFoundData = <ItemNotFound message={ 'Search item not found.'} />
         }
 
-        if (!hide && countries.error) {
+        if (countries.error) {
+            showList = false;
             notFoundData = <ItemNotFound message={'Data not found, Please try again.'}/>
         }
 
-        if(!hide && countries.items && countries.items.countries) {
+        if(showList && countries.items && countries.items.countries) {
             total = countries.items.countries.length;
             showPagination = true;
             data = <CustomDatatable
                 total = { total }
                 colStyle = { colStyle }
-                hideCur = { hideCur }
-                showRate = {showRate}
-                hide = { hide }
+                hideCurrency = { hideCurrency }
+                showList = { showList }
+                showRate = { showRate }
                 showPagination = { false }
-                countries={ this.state.current } />
+                countries = { this.state.current } />
         }
-        if(hide && country.items) {
+
+        if(!showList && country.items) {
             showPagination = false;
             total = country.items.countries.length;
             data = <CustomDatatable
                 total = { total }
                 colStyle = { colStyle }
-                hideCur = { hideCur }
+                hideCurrency = { hideCurrency }
+                showList = { !showList }
                 showRate = { showRate }
-                hide = { hide }
                 showPagination = { false }
-                countries={ country.items.countries } />
+                countries = { country.items.countries } />
         }
 
         return (
             <div className="container">
                 <SearchComponent  handleSearch={this.handleSearch} />
-                <div className="loading_bar">
-                    { button }
-                </div>
+                <div className="loading_bar"> { button } </div>
                 { data }
                 { !isLoading && notFoundData }
-
                 { !isLoading && showPagination &&
                     <div className="container" >
                         <div className="d-flex">
                             <div className="mr-auto p-2">
-                                <button 
+                                <button
                                 className="bth"
                                 disabled={ this.state.currentPage === 1 }
                                  onClick={() => this.movePrevious() }>
-                                Previous 
+                                Previous
                                 </button>
                             </div>
                             <div className="p-2 text-center">
                              { this.state.currentPage } of { this.state.totalPage }
                             </div>
                             <div className="p-2">
-                                <button 
+                                <button
                                 disabled={ this.state.currentPage === this.state.totalPage }
                                 className="bth" onClick={ () => this.moveNext()}>
                                 Next
