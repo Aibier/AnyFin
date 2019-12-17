@@ -1,8 +1,10 @@
 import React from 'react';
+import  { LoadingBarDiv } from './elements'
+
 
 export class LoadingBarComponent extends React.Component {
 
     render() {
-        return <div className="loader text-center"></div>
+        return <LoadingBarDiv/>
     }
 }

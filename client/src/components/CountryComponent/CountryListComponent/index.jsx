@@ -1,10 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SearchComponent } from '../../components/SearchComponent';
-import { CustomDatatable} from '../DataTableComponent';
-import { ItemNotFound } from '../NotFoudComponent';
-import { LoadingBarComponent } from '../CommonComponents/LoadingBarComponent'
-import { getCountries, getCountryByName } from '../../actions';
+import { SearchComponent } from '../../SearchComponent';
+import {CustomDatatable, LoadingBarComponent, ItemNotFoundComponent } from '../../CommonComponents';
+import { getCountries, getCountryByName } from '../../../actions';
 
 
 let showList = true;
@@ -91,12 +89,12 @@ class Countries extends React.Component {
 
         if (country.error) {
             showList = false;
-            notFoundData = <ItemNotFound message={ 'Search item not found.'} />
+            notFoundData = <ItemNotFoundComponent message={ 'Search item not found.'} />
         }
 
         if (countries.error) {
             showList = false;
-            notFoundData = <ItemNotFound message={'Data not found, Please try again.'}/>
+            notFoundData = <ItemNotFoundComponent message={'Data not found, Please try again.'}/>
         }
 
         if(showList && countries.items && countries.items.countries) {

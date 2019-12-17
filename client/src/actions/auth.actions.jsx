@@ -6,14 +6,12 @@ import { history } from '../helpers';
 export const authActions = {
     login,
     logout,
-    register,
-    delete: _delete
+    register
 };
 
 function login(email, password) {
     return dispatch => {
         dispatch(request({ email }));
-
         authService.login(email, password)
             .then(
                 user => { 
@@ -40,11 +38,10 @@ function logout() {
 function register(user) {
     return dispatch => {
         dispatch(request(user));
-
         authService.register(user)
             .then(
                 user => { 
-                    dispatch(success());
+                    dispatch(success(user));
                     history.push('/login');
                     dispatch(alertActions.success('Registration successful'));
                 },
@@ -58,20 +55,4 @@ function register(user) {
     function request(user) { return { type: authConstants.REGISTER_REQUEST, user } }
     function success(user) { return { type: authConstants.REGISTER_SUCCESS, user } }
     function failure(error) { return { type: authConstants.REGISTER_FAILURE, error } }
-}
-
-function _delete(id) {
-    return dispatch => {
-        dispatch(request(id));
-
-        authService.delete(id)
-            .then(
-                user => dispatch(success(id)),
-                error => dispatch(failure(id, error.toString()))
-            );
-    };
-
-    function request(id) { return { type: authConstants.DELETE_REQUEST, id } }
-    function success(id) { return { type: authConstants.DELETE_SUCCESS, id } }
-    function failure(id, error) { return { type: authConstants.DELETE_FAILURE, id, error } }
 }

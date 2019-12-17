@@ -1,6 +1,6 @@
 import React from "react";
 import { TableHeaderComponent } from './TableHeaderComponent'
-import { CountryItemComponent } from '../CountryItemComponent';
+import { CountryItemComponent } from '../../CountryComponent/CountryItemComponent';
 
 export class CustomDatatable extends React.Component{
     constructor(props) {

@@ -3,7 +3,7 @@ import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { history } from '../helpers';
 import { alertActions } from '../actions';
-import { PrivateRoute } from '../components';
+import { PrivateRoute } from '../containers';
 import { LoginPage } from '../pages/LoginPage';
 import { RegisterPage } from '../pages/RegisterPage';
 import { CountriesPage } from '../pages/CountryPage';
@@ -18,12 +18,8 @@ class App extends React.Component {
     }
 
     render() {
-        const { alert } = this.props;
         return (
             <div>
-                {alert.message &&
-                <div className={`alert ${alert.type}`}>{alert.message}</div>
-                }
                 <Router history={history}>
                     <Switch>
                         <PrivateRoute exact path="/" component={CountriesPage} />

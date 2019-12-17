@@ -23,7 +23,7 @@ export class SearchComponent extends React.Component {
             <div className="container">
                 <div className="row mb-2">
                     <div className="col-lg-8 mx-auto">
-                        <div className="bg-white pt-4 rounded shadow">
+                        <div className="bg-white pt-4">
                             <form onSubmit={this.handleSubmit}>
                                 <div className="input-group mb-4 border rounded-pill p-1">
                                     <input type="search" placeholder="Search country ..."

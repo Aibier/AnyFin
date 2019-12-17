@@ -1,6 +1,6 @@
 import React from 'react';
-import { HeaderComponent } from '../../components/HeaderComponent';
-import { CountryListComponent } from '../../components/CountryListComponent';
+import { HeaderComponent } from '../../components/CommonComponents/HeaderComponent';
+import { CountryListComponent } from '../../components/CountryComponent/CountryListComponent';
 
 export class CountriesPage extends React.Component {
 
