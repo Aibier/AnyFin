@@ -1,4 +1,6 @@
 import React from "react";
+import { SearchInput } from './elements';
+import { ContainerDiv } from '../CommonComponents/elments'
 
 export class SearchComponent extends React.Component {
 
@@ -20,13 +22,13 @@ export class SearchComponent extends React.Component {
 
     render() {
         return (
-            <div className="container">
+            <ContainerDiv className="container">
                 <div className="row mb-2">
                     <div className="col-lg-8 mx-auto">
                         <div className="bg-white pt-4">
                             <form onSubmit={this.handleSubmit}>
                                 <div className="input-group mb-4 border rounded-pill p-1">
-                                    <input type="search" placeholder="Search country ..."
+                                    <SearchInput type="search" placeholder="Search country ..."
                                            aria-describedby="button-addon3"
                                            className="form-control bg-none border-0"
                                            value={this.state.value}
@@ -44,7 +46,7 @@ export class SearchComponent extends React.Component {
                         </div>
                     </div>
                 </div>
-            </div>
+            </ContainerDiv>
         );
     }
 

@@ -1,6 +1,7 @@
 import React from "react";
-import { TableHeaderComponent } from './TableHeaderComponent'
+import { TableHeaderComponent } from './TableHeaderComponent';
 import { CountryItemComponent } from '../../CountryComponent/CountryItemComponent';
+import { TableWrapper } from './elements';
 
 export class CustomDatatable extends React.Component{
     constructor(props) {
@@ -18,7 +19,7 @@ export class CustomDatatable extends React.Component{
 
         return <div className="col-md-12 table-responsive">
             <div className="text-left">Total { total } found.</div>
-            <table className="table">
+            <TableWrapper className="table">
                 <TableHeaderComponent attributes={attributes} />
                 <tbody>
                  {
@@ -28,7 +29,7 @@ export class CustomDatatable extends React.Component{
                          />)
                  }
                 </tbody>
-            </table>
+            </TableWrapper>
         </div>
 
     }

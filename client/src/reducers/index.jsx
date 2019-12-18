@@ -3,6 +3,7 @@ import { authentication } from './authentication.reducer';
 import { registration } from './registration.reducer';
 import { countries, country, search } from './countries.reducer';
 import { alert } from './alert.reducer';
+import { reducer as reduxFormReducer } from 'redux-form';
 
 const rootReducer = combineReducers({
   authentication,
@@ -10,7 +11,8 @@ const rootReducer = combineReducers({
   countries,
   country,
   search,
-  alert
+  alert,
+  form: reduxFormReducer
 });
 
 export default rootReducer;

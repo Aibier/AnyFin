@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { SearchComponent } from '../../SearchComponent';
 import {CustomDatatable, LoadingBarComponent, ItemNotFoundComponent } from '../../CommonComponents';
+import { ContainerDiv, ButtonWrapper } from '../../CommonComponents/elments';
 import { getCountries, getCountryByName } from '../../../actions';
 
 
@@ -124,36 +125,36 @@ class Countries extends React.Component {
         }
 
         return (
-            <div className="container">
+            <ContainerDiv className="container">
                 <SearchComponent  handleSearch={this.handleSearch} />
                 <div className="loading_bar"> { button } </div>
                 { data }
                 { !isLoading && notFoundData }
                 { !isLoading && showPagination &&
-                    <div className="container" >
+                    <div>
                         <div className="d-flex">
                             <div className="mr-auto p-2">
-                                <button
+                                <ButtonWrapper
                                 className="bth"
                                 disabled={ this.state.currentPage === 1 }
                                  onClick={() => this.movePrevious() }>
                                 Previous
-                                </button>
+                                </ButtonWrapper>
                             </div>
                             <div className="p-2 text-center">
                              { this.state.currentPage } of { this.state.totalPage }
                             </div>
                             <div className="p-2">
-                                <button
+                                <ButtonWrapper
                                 disabled={ this.state.currentPage === this.state.totalPage }
                                 className="bth" onClick={ () => this.moveNext()}>
                                 Next
-                                </button>
+                                </ButtonWrapper>
                             </div>
                         </div>
                     </div>
                 }
-            </div>
+            </ContainerDiv>
         );
     }
 }

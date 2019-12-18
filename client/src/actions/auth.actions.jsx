@@ -1,7 +1,8 @@
 import { authConstants } from '../constants';
 import { authService } from '../services';
-import { alertActions } from './';
+import { alertActions } from './../actions';
 import { history } from '../helpers';
+
 
 export const authActions = {
     login,
@@ -11,18 +12,18 @@ export const authActions = {
 
 function login(email, password) {
     return dispatch => {
-        dispatch(request({ email }));
+        dispatch(request({ email, password }));
+
         authService.login(email, password)
             .then(
                 user => { 
                     dispatch(success(user));
                     history.push('/');
-                },
-                error => {
-                    dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
                 }
-            );
+            ).catch(error => {
+                dispatch(failure(error.toString()));
+                dispatch(alertActions.error(error.toString()));
+        });
     };
 
     function request(user) { return { type: authConstants.LOGIN_REQUEST, user } }
@@ -44,12 +45,11 @@ function register(user) {
                     dispatch(success(user));
                     history.push('/login');
                     dispatch(alertActions.success('Registration successful'));
-                },
-                error => {
-                    dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
                 }
-            );
+            ).catch(error => {
+            dispatch(failure(error.toString()));
+            dispatch(alertActions.error(error.toString()));
+        });
     };
 
     function request(user) { return { type: authConstants.REGISTER_REQUEST, user } }

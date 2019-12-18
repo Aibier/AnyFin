@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 import { authActions } from '../../actions';
 import { HeaderComponent } from '../../components/CommonComponents/HeaderComponent';
 import { RequiredFieldErrorDiv } from './elements';
-
+// import LoginValidationForm from '../../components/LoginForm';
 
 class LoginPage extends React.Component {
     constructor(props) {
         super(props);
-        this.props.logout();
+        // this.props.logout();
         this.state = {
             email: '',
             password: '',
@@ -44,31 +44,31 @@ class LoginPage extends React.Component {
                 <div className="row justify-content-md-center">
                     <div className=" col-md-4  m-3 mt-2">
                         <h2 className="mt-2 text-center">Login</h2>
-                        <form name="form" onSubmit={this.handleSubmit}>
-                            {
-                                submitted && alert && alert.message &&
-                                <div className={ `alert show ${alert.type}` }  role="alert"> { alert.message }
-                                    <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            }
+                        {
+                            submitted && alert && alert.message &&
+                            <div className={ `alert show ${alert.type}` }  role="alert"> { alert.message }
+                                <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        }
+                        <form name="loginForm" onSubmit={this.handleSubmit}>
                             <div className={'form-group' + (submitted && !email ? ' has-error' : '')}>
                                 <label htmlFor="email">Email</label>
                                 <input type="text" className="form-control" name="email" value={email} onChange={this.handleChange} />
-                                {submitted && !email &&
-                                <RequiredFieldErrorDiv>Email is required.</RequiredFieldErrorDiv>
+                                { submitted && !email &&
+                                   <RequiredFieldErrorDiv>Email is required.</RequiredFieldErrorDiv>
                                 }
                             </div>
                             <div className={'form-group' + (submitted && !password ? ' has-error' : '')}>
                                 <label htmlFor="password">Password</label>
                                 <input type="password" className="form-control" name="password" value={password} onChange={this.handleChange} />
-                                {submitted && !password &&
+                                { submitted && !password &&
                                     <RequiredFieldErrorDiv>Password is required.</RequiredFieldErrorDiv>
                                 }
                             </div>
                             <div className="form-group">
-                                <button className="btn btn-primary">Signin</button>
+                                <button type="submit"  className="btn btn-primary" >Login</button>
                                 <Link to="/register" className="btn btn-link">Register</Link>
                             </div>
                         </form>

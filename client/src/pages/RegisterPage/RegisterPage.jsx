@@ -45,7 +45,7 @@ class RegisterPage extends React.Component {
 
     render() {
         const { registering  } = this.props;
-        const { user, submitted } = this.state;
+        const { user, submitted, alert } = this.state;
         return (
          <div>
              <HeaderComponent/>
@@ -53,6 +53,14 @@ class RegisterPage extends React.Component {
 
                  <div className="col-md-4 m-3 mt-2">
                      <h2 className="text-center mt-2">Register</h2>
+                     {
+                         submitted && alert && alert.message &&
+                         <div className={ `alert show ${alert.type}` }  role="alert"> { alert.message }
+                             <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                                 <span aria-hidden="true">&times;</span>
+                             </button>
+                         </div>
+                     }
                      <form name="form" onSubmit={this.handleSubmit}>
                          <div className={'form-group' + (submitted && !user.firstName ? ' has-error' : '')}>
                              <label htmlFor="firstName">First Name</label>
@@ -84,9 +92,6 @@ class RegisterPage extends React.Component {
                          </div>
                          <div className="form-group">
                              <button className="btn btn-primary">Register</button>
-                             {registering &&
-                             <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                             }
                              <Link to="/login" className="btn btn-link">Cancel</Link>
                          </div>
                      </form>
@@ -99,12 +104,13 @@ class RegisterPage extends React.Component {
 
 function mapState(state) {
     const { registering } = state.registration;
-    return { registering };
+    const { alert } = state;
+    return { registering, alert };
 }
 
 const actionCreators = {
     register: authActions.register
-}
+};
 
 const connectedRegisterPage = connect(mapState, actionCreators)(RegisterPage);
 export { connectedRegisterPage as RegisterPage };

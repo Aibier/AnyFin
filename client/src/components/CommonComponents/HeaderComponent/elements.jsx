@@ -7,6 +7,3 @@ export const HeaderDiv = styled.div`
     z-index: 1;
     background-color: #715271;
 `;
-
-export const NavWrapper = styled.nav`
-`;
