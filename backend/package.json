@@ -39,7 +39,7 @@
     "method-override": "^3.0.0",
     "mongoose": "^5.7.13",
     "morgan": "^1.9.1",
-    "npm": "^6.13.2",
+    "npm": "^6.13.4",
     "winston": "^3.2.1"
   },
   "devDependencies": {
