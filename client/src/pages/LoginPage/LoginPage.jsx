@@ -9,7 +9,7 @@ import { RequiredFieldErrorDiv } from './elements';
 class LoginPage extends React.Component {
     constructor(props) {
         super(props);
-        // this.props.logout();
+        this.props.logout();
         this.state = {
             email: '',
             password: '',
@@ -17,7 +17,7 @@ class LoginPage extends React.Component {
         };
 
         this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSubmitLogin = this.handleSubmitLogin.bind(this);
     }
 
     handleChange(e) {
@@ -25,13 +25,13 @@ class LoginPage extends React.Component {
         const { name, value } = e.target;
         this.setState({ [name]: value });
     }
-
-    handleSubmit(e) {
+    
+    handleSubmitLogin(e) {
         e.preventDefault();
-        this.setState({ submitted: true });
         const { email, password } = this.state;
         if (email && password) {
             this.props.login(email, password);
+            this.setState({ submitted: true });
         }
     }
 
@@ -52,7 +52,7 @@ class LoginPage extends React.Component {
                                 </button>
                             </div>
                         }
-                        <form name="loginForm" onSubmit={this.handleSubmit}>
+                        <form name="loginForm">
                             <div className={'form-group' + (submitted && !email ? ' has-error' : '')}>
                                 <label htmlFor="email">Email</label>
                                 <input type="text" className="form-control" name="email" value={email} onChange={this.handleChange} />
@@ -68,7 +68,13 @@ class LoginPage extends React.Component {
                                 }
                             </div>
                             <div className="form-group">
-                                <button type="submit"  className="btn btn-primary" >Login</button>
+                                <button
+                                    type="button"
+                                    className="btn btn-primary"
+                                    onClick={event => {
+                                        this.handleSubmitLogin(event)
+                                    }}
+                                >Login</button>
                                 <Link to="/register" className="btn btn-link">Register</Link>
                             </div>
                         </form>

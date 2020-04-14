@@ -44,7 +44,6 @@ class RegisterPage extends React.Component {
     }
 
     render() {
-        const { registering  } = this.props;
         const { user, submitted, alert } = this.state;
         return (
          <div>
@@ -103,9 +102,8 @@ class RegisterPage extends React.Component {
 }
 
 function mapState(state) {
-    const { registering } = state.registration;
     const { alert } = state;
-    return { registering, alert };
+    return { alert };
 }
 
 const actionCreators = {

@@ -13,7 +13,6 @@ export const authActions = {
 function login(email, password) {
     return dispatch => {
         dispatch(request({ email, password }));
-
         authService.login(email, password)
             .then(
                 user => { 
@@ -21,6 +20,7 @@ function login(email, password) {
                     history.push('/');
                 }
             ).catch(error => {
+                console.log('error is', error)
                 dispatch(failure(error.toString()));
                 dispatch(alertActions.error(error.toString()));
         });
