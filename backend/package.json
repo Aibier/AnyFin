@@ -34,7 +34,7 @@
     "express-rate-limit": "^5.0.0",
     "express-status-monitor": "^1.2.7",
     "helmet": "^3.21.2",
-    "i": "^0.3.6",
+    "i": "^0.3.7",
     "jsonwebtoken": "^8.5.1",
     "method-override": "^3.0.0",
     "mongoose": "^5.7.13",
