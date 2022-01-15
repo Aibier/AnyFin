@@ -61,7 +61,7 @@
     "nodemon": "^1.19.4",
     "nodemon-webpack-plugin": "^4.1.1",
     "prettier": "^1.19.1",
-    "shelljs": "^0.8.3",
+    "shelljs": "^0.8.5",
     "supertest": "^4.0.2",
     "ts-jest": "^24.2.0",
     "ts-loader": "^6.2.1",
