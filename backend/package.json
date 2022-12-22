@@ -35,7 +35,7 @@
     "express-status-monitor": "^1.2.7",
     "helmet": "^3.21.2",
     "i": "^0.3.7",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "method-override": "^3.0.0",
     "mongoose": "^5.7.13",
     "morgan": "^1.9.1",
